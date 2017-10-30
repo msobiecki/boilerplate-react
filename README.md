@@ -1,3 +1,3 @@
-<img src="https://rawgit.com/gorangajic/react-icons/master/react-icons.svg" width="60" alt="React Icons">
+<img src="https://rawgit.com/gorangajic/react-icons/master/react-icons.svg" width="60" alt="React Boilerplate">
 
-## [React Boilerplate](http://gorangajic.github.io/react-icons/index.html)
+## [React Boilerplate](https://github.com/SaliMike/boilerplate-react)
