@@ -80,7 +80,7 @@ const cssDevelop = [{
 }, {
 	loader: 'sass-resources-loader',
 	options: {
-		resources: [paths.utilsPath + '_clearfix.sass', paths.utilsPath + '_colors.sass', paths.utilsPath + '_rem.sass', paths.utilsPath + '_responsive.sass', paths.utilsPath + '_typography.sass', paths.utilsPath + '_cms.sass']
+		resources: [paths.utilsPath + '_clearfix.sass', paths.utilsPath + '_colors.sass', paths.utilsPath + '_container.sass', paths.utilsPath + '_rem.sass', paths.utilsPath + '_responsive.sass', paths.utilsPath + '_typography.sass', paths.utilsPath + '_cms.sass']
 	},
 }];
 
