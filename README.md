@@ -2,6 +2,6 @@
 
 ## [React Boilerplate](https://github.com/SaliMike/boilerplate-react)
 ### Usage
-		"dev": "webpack-dev-server --progress --colors",
-		"prod": "set NODE_ENV=production&& webpack -p",
-		"clean": "rimraf dist"
+	"dev": "webpack-dev-server --progress --colors",
+	"prod": "set NODE_ENV=production&& webpack -p",
+	"clean": "rimraf dist"
