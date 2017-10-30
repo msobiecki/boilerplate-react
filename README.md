@@ -4,4 +4,4 @@
 ### Usage
 	npm run dev // "dev": "webpack-dev-server --progress --colors",
 	npm run prod // "prod": "set NODE_ENV=production&& webpack -p",
-	npm run clean //"clean": "rimraf dist"
+	npm run clean // "clean": "rimraf dist"
