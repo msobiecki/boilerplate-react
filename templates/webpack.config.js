@@ -11,7 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /* Paths */
 const paths = {
 	srcPath: path.join(__dirname, 'source'),
-	imgPath: path.join(__dirname, 'dist/images/'),
+	assetsPath: path.join(__dirname, 'dist/assets/'),
 	utilsPath: path.join(__dirname, 'source/utils/'),
 	distPath: path.join(__dirname, 'dist')
 };
@@ -80,7 +80,7 @@ const cssDevelop = [{
 }, {
 	loader: 'sass-resources-loader',
 	options: {
-		resources: [paths.utilsPath + '_clearfix.sass', paths.utilsPath + '_colors.sass', paths.utilsPath + '_container.sass', paths.utilsPath + '_rem.sass', paths.utilsPath + '_responsive.sass', paths.utilsPath + '_typography.sass', paths.utilsPath + '_cms.sass']
+		resources: [paths.utilsPath + '_colors.sass', paths.utilsPath + '_mixins.sass']
 	},
 }];
 
@@ -108,7 +108,7 @@ const cssProduction = ExtractTextPlugin.extract({
 	}, {
 		loader: 'sass-resources-loader',
 		options: {
-			resources: [paths.utilsPath + '_clearfix.sass', paths.utilsPath + '_colors.sass', paths.utilsPath + '_rem.sass', paths.utilsPath + '_responsive.sass', paths.utilsPath + '_typography.sass', paths.utilsPath + '_cms.sass']
+			resources: [paths.utilsPath + '_colors.sass', paths.utilsPath + '_mixins.sass']
 		},
 	}]
 });
@@ -130,12 +130,9 @@ const jsConfig = {
 const fileConfig = {
 	loader: 'file-loader',
 	options: {
-		// context: 'source/assets/',
 		name: '[path][name].[ext]',
-		// publicPath: paths.distPath,
-		outputPath: paths.imgPath,
+		outputPath: 'assets/',
 		emitFile: true,
-		useRelativePath: true
 	}
 };
 
