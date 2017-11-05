@@ -5,7 +5,7 @@ import styles from './Footer.sass';
 class Footer extends Component {
 	render() {
 		return (
-			<footer className="footer">
+			<footer class="footer">
 			</footer>
 		);
 	}
