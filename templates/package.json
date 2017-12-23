@@ -1,7 +1,7 @@
 {
   "name": "boilerplate-react",
   "version": "0.0.0",
-  "description": "[React] Boilerplate react.",
+  "description": ":wrench: [React] Boilerplate for cutting front-end templates.",
   "repository": {
     "type": "git",
     "url": "git://github.com/SaliMike/boilerplate-react.git"
