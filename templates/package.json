@@ -1,225 +1,50 @@
-/* Webpack config by SaliMike */
-
-/* Base */
-const path = require('path');
-const webpack = require('webpack');
-
-/* Plugin's */
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-/* Paths */
-const paths = {
-  srcPath: path.join(__dirname, 'source'),
-  assetsPath: path.join(__dirname, 'dist/assets/'),
-  utilsPath: path.join(__dirname, 'source/utils/'),
-  distPath: path.join(__dirname, 'dist'),
-};
-
-/* Node Environment */
-const isProduction = process.env.NODE_ENV === 'production';
-
-/* Entery */
-const entry = './index.jsx';
-
-/* Output */
-const output = {
-  path: paths.distPath,
-  filename: 'app.min.js',
-};
-
-/* ----------------------------- */
-/* Plugins - konfiguracja        */
-/* ----------------------------- */
-const plugins = [];
-
-plugins.push(new HtmlWebpackPlugin({
-  minify: {
-    collapseWhitespace: true,
-    html5: true,
-    removeComments: true,
+{
+  "name": "boilerplate-react",
+  "version": "0.0.0",
+  "description": "[React] Boilerplate react.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SaliMike/boilerplate-react.git"
   },
-  hash: true,
-  filename: 'index.html',
-  template: 'index.html',
-}));
-
-if (!isProduction) {
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(new webpack.NamedModulesPlugin());
-} else {
-  plugins.push(new ExtractTextPlugin({
-    filename: 'styles.min.css',
-    allChunks: true,
-  }));
+  "main": "webpack.config.js",
+  "dependencies": {
+    "flux": "^3.1.3",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-icons": "^2.2.7",
+    "react-router-dom": "^4.2.2",
+    "react-slick": "^0.16.0",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.0.9",
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^6.0.6",
+    "sass-resources-loader": "^1.3.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --progress --colors",
+    "prod": "set NODE_ENV=production&& webpack -p",
+    "clean": "rimraf dist"
+  },
+  "author": "",
+  "license": "ISC"
 }
-
-/* ----------------------------- */
-/* Sass - konfiguracja styli */
-/* ----------------------------- */
-
-// Develop configuration
-const sassDevelop = [{
-  loader: 'style-loader',
-}, {
-  loader: 'css-loader',
-  options: {
-    minimize: false,
-    sourceMap: true,
-    camelCase: true,
-  },
-}, {
-  loader: 'sass-loader',
-  options: {
-    sourceMap: true,
-  },
-}, {
-  loader: 'sass-resources-loader',
-  options: {
-    resources: [paths.utilsPath + '_colors.sass', paths.utilsPath + '_mixins.sass']
-  },
-}];
-
-// Build configuration
-const sassProduction = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: [{
-    loader: 'css-loader',
-    options: {
-      minimize: true,
-      sourceMap: false,
-      camelCase: true,
-      localIdentName: '[path][name]__[local]--[hash:base64:6]',
-    },
-  }, {
-    loader: 'postcss-loader',
-    options: {
-      plugins: () => [require('autoprefixer')]
-    },
-  }, {
-    loader: 'sass-loader',
-    options: {
-      sourceMap: false,
-    },
-  }, {
-    loader: 'sass-resources-loader',
-    options: {
-      resources: [paths.utilsPath + '_colors.sass', paths.utilsPath + '_mixins.sass']
-    },
-  }],
-});
-
-const sassConfig = isProduction ? sassProduction : sassDevelop;
-
-/* ----------------------------- */
-/* CSS - Vendor styli */
-/* ----------------------------- */
-
-// Develop configuration
-const cssDevelop = [{
-    loader: 'style-loader',
-  }, {
-    loader: 'css-loader',
-    options: {
-      minimize: false,
-      sourceMap: true,
-      camelCase: true,
-    },
-  }];
-
-// Build configuration
-const cssProduction = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: [{
-    loader: 'css-loader',
-    options: {
-      minimize: true,
-      sourceMap: false,
-      camelCase: true,
-      localIdentName: '[path][name]__[local]--[hash:base64:6]',
-    },
-  }, {
-    loader: 'postcss-loader',
-    options: {
-      plugins: () => [require('autoprefixer')]
-    },
-  }],
-});
-
-const cssConfig = isProduction ? cssProduction : cssDevelop;
-
-/* ----------------------------- */
-/* JS - konfiguracja             */
-/* ----------------------------- */
-
-const jsConfig = {
-  loader: 'babel-loader',
-};
-
-/* ----------------------------- */
-/* Fileloader - konfiguracja       */
-/* ----------------------------- */
-
-const fileConfig = {
-  loader: 'file-loader',
-  options: {
-    name: '[path][name].[ext]',
-    outputPath: 'assets/',
-    emitFile: true,
-  },
-};
-
-/* ----------------------------- */
-/* Dev Server - konfiguracja     */
-/* ----------------------------- */
-const devServer = {
-  contentBase: paths.distPath,
-
-  // quiet: false,
-  // noInfo: false,
-  // historyApiFallback: false,
-  compress: true,
-  port: 9000,
-  hot: true,
-  open: false,
-};
-
-/* ----------------------------- */
-/* Module                       */
-/* ----------------------------- */
-module.exports = {
-  devtool: !isProduction ? 'inline-sourcemap' : false,
-  devServer,
-
-  context: paths.srcPath,
-
-  entry: {
-    app: entry,
-  },
-  output,
-
-  resolve: {
-    modules: ['node_modules'],
-    extensions: ['.js', '.json', '.jsx', '.sass', '.scss'],
-  },
-
-  module: {
-    rules: [{
-      test: /\.(sass)$/,
-      use: sassConfig,
-    }, {
-      test: /\.(css)$/,
-      use: cssConfig,
-    }, {
-      test: /\.jsx?$/,
-      exclude: /(node_modules)/,
-      use: jsConfig,
-    },
-    {
-      test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-      use: fileConfig,
-    }],
-  },
-
-  plugins,
-};
